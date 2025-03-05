@@ -37,9 +37,10 @@ runs:
 
     - name: Download main.py from defect-dojo-action repository
       run: |
-        curl -L -o main.py https://raw.githubusercontent.com/defect-dojo-action/main/main.py
-        curl -L -o main.py https://raw.githubusercontent.com/defect-dojo-action/main/defectdojo.py
-        curl -L -o main.py https://raw.githubusercontent.com/defect-dojo-action/main/requirements.txt
+        curl -s -H "Accept: application/vnd.github.v3.raw" -o main.py https://api.github.com/repos/michelleamesquita/defect-dojo-action/contents/main.py?ref=main
+        curl -s -H "Accept: application/vnd.github.v3.raw" -o defectdojo.py https://api.github.com/repos/michelleamesquita/defect-dojo-action/contents/defectdojo.py?ref=main
+        curl -s -H "Accept: application/vnd.github.v3.raw" -o requirements.txt https://api.github.com/repos/michelleamesquita/defect-dojo-action/contents/requirements.txt?ref=main
+
       shell: bash
 
     - name: Install dependencies
