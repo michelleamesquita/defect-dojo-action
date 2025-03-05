@@ -1,0 +1,60 @@
+name: 'DefectDojo Integration'
+author: 'appsec'
+description: 'DefectDojo Integration to GitHub Action'
+
+inputs:
+  url_base:
+    required: true
+  username:
+    required: true
+  source_url:
+    required: true
+  tool:
+    required: true
+  file:
+    required: true
+  scan_type:
+    required: false
+  product_name:
+    required: true
+  description:
+    required: true
+  origin:
+    required: true
+  token:
+    required: true
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Checkout repository content
+      uses: actions/checkout@v3
+
+    - name: Setup Python
+      uses: actions/setup-python@v4
+      with:
+        python-version: '3.10'  
+
+    - name: Download main.py from defect-dojo-action repository
+      run: |
+        curl -L -o main.py https://raw.githubusercontent.com/defect-dojo-action/main/main.py
+      shell: bash
+
+    - name: Install dependencies
+      run: pip install -r requirements.txt
+      shell: bash
+
+    - name: Run Python script
+      run: |
+        python main.py \
+          --url_base "${{ inputs.url_base }}" \
+          --username "${{ inputs.username }}" \
+          --source_url "${{ inputs.source_url }}" \
+          --tool "${{ inputs.tool }}" \
+          --file "${{ inputs.file }}" \
+          --scan_type "${{ inputs.scan_type }}" \
+          --product_name "${{ inputs.product_name }}" \
+          --description "${{ inputs.description }}" \
+          --origin "${{ inputs.origin }}" \
+          --json "${{ inputs.token }}"
+      shell: bash
