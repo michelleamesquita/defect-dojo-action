@@ -241,10 +241,9 @@ def create_finding(engagement_id,FILE,URL_BASE):
     }
 
     print(f"📂 Diretório atual: {os.getcwd()}")
-    print("📄 Arquivos no diretório reports/:")
-    os.system("ls -lah reports/") 
 
     FILE = os.path.join(os.getcwd(), args.file)  # Pega o caminho absoluto dentro do workspace
+    print(f"caminho: {FILE}")
 
     if not os.path.exists(FILE):
         print(f"❌ Erro: O arquivo '{FILE}' não foi encontrado!")
