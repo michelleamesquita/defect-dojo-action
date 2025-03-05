@@ -240,7 +240,7 @@ def create_finding(engagement_id,FILE,URL_BASE):
     'skip_duplicates': False
     }
 
-    FILE = os.path.join(os.getcwd(), args.file)  # Pega o caminho absoluto dentro do workspace
+    FILE = os.path.join(os.getcwd(), "reports", args.file)  # Pega o caminho absoluto dentro do workspace
 
     if not os.path.exists(FILE):
         print(f"❌ Erro: O arquivo '{FILE}' não foi encontrado!")
