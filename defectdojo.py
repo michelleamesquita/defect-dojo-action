@@ -240,6 +240,10 @@ def create_finding(engagement_id,FILE,URL_BASE):
     'skip_duplicates': False
     }
 
+    print(f"📂 Diretório atual: {os.getcwd()}")
+    print("📄 Arquivos no diretório reports/:")
+    os.system("ls -lah reports/") 
+
     FILE = os.path.join(os.getcwd(), args.file)  # Pega o caminho absoluto dentro do workspace
 
     if not os.path.exists(FILE):
