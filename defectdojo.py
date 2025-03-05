@@ -2,6 +2,7 @@ import requests
 import json
 from datetime import datetime, timedelta
 import argparse
+import os
 
 
 parser = argparse.ArgumentParser(
@@ -238,6 +239,14 @@ def create_finding(engagement_id,FILE,URL_BASE):
     'engagement': engagement_id,
     'skip_duplicates': False
     }
+
+    FILE = os.path.join(os.getcwd(), args.file)  # Pega o caminho absoluto dentro do workspace
+
+    if not os.path.exists(FILE):
+        print(f"❌ Erro: O arquivo '{FILE}' não foi encontrado!")
+        exit(1)
+
+    print(f"✅ Arquivo encontrado: {FILE}")
 
     files = {
         'file': open(FILE, 'rb')
