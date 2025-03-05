@@ -90,10 +90,16 @@ def get_product(PRODUCT_NAME,URL_BASE):
 
     response = requests.get(url, headers=headers)
 
+    id = None
+
     if len(response.json()['results']) != 0:
         for i in range(len(response.json()['results'])):
             if response.json()['results'][i]['name'] == PRODUCT_NAME:
                 id=int(response.json()['results'][i]['id'])
+
+    if id is None:
+        raise ValueError(f"Produto '{PRODUCT_NAME}' não encontrado no DefectDojo.")
+            
     return id
 
 
