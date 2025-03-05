@@ -245,12 +245,6 @@ def create_finding(engagement_id,FILE,URL_BASE):
     print(f"📂 Diretório atual: {os.getcwd()}")
     print(f"🔍 Caminho esperado do arquivo: {FILE}")
 
-    # Lista todos os arquivos no diretório atual para garantir que o arquivo está lá
-    print("📄 lista tudo:")
-    os.system("find . -type f")
-    os.system("ls -lah")
-    
-
     if not os.path.exists(FILE):
         print(f"❌ Erro: O arquivo '{FILE}' não foi encontrado!")
         exit(1)
